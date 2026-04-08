@@ -1,0 +1,26 @@
+# Visual Studio user-specific and hidden files
+.vs/
+*.user
+*.userosscache
+*.sln.docstates
+*.suo
+
+# Build results (compiled code)
+[Bb]in/
+[Oo]bj/
+
+# NuGet Packages
+*.nupkg
+# The packages folder can be ignored, but keep build scripts if they exist
+packages/
+!packages/build/
+!packages/repositories.config
+
+# Local databases and cache inside App_Data
+App_Data/*.mdf
+App_Data/*.ldf
+App_Data/*.sdf
+
+# Publish profiles
+*.pubxml
+*.pubxml.user

@@ -1,0 +1,44 @@
+﻿@model List<model_64132763.EF.MENU>
+<div class="top_nav">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="top_nav_left">Miễn phí vận chuyển cho đơn hàng trên $50</div>
+            </div>
+            <div class="col-md-6 text-right">
+                <div class="top_nav_right">
+                    <ul class="top_nav_menu">
+                        <li class="account">
+                            @{
+                                var session = (UserLogin)Session[QLBH_64132763.Common.CommonConstants.USER_SESSION];
+                            }
+
+                            @if (session == null)
+                            {
+                                <a href="#">
+                                    My Account
+                                    <i class="fa fa-angle-down"></i>
+                                </a>
+                                <ul class="account_selection">
+                                    <li><a href="@Url.RouteUrl("Login")"><i class="fa fa-sign-in" aria-hidden="true"></i>Sign In</a></li>
+                                    <li><a href="@Url.RouteUrl("Register")"><i class="fa fa-user-plus" aria-hidden="true"></i>Register</a></li>
+                                </ul>
+                            }
+                            else
+                            {
+                                <ul>
+                                    <li style="color:white">Hello: @session.UserName</li>
+                                    <li>@Html.ActionLink("Logout", "Logout", "User_64132763")</li>
+                                </ul>
+                            }
+                        </li>
+                        @foreach (var item in Model)
+                        {
+                            <li><a href="@item.LINK" target="@item.TARGET_MENU">@item.CONTENT</a></li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

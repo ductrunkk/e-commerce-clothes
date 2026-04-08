@@ -1,0 +1,19 @@
+﻿@model List<model_64132763.EF.PRODUCT_CATEGORY>
+
+<div class="banner">
+    <div class="container">
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                <div class="col-md-4">
+                    <div class="banner_item align-items-center" style="background-color: rgb(227, 227, 225) ">
+                        <div class="banner_category">
+                            <a href="/product/@item.META_TITLE_PRODUCT_CATEGORY-@item.ID_PRODUCT_CATEGORY">@item.NAME_PRODUCT_CATEGORY</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+

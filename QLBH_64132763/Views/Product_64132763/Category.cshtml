@@ -1,0 +1,178 @@
+﻿@model List<model_64132763.EF.PRODUCT>
+
+@{
+    var category = (model_64132763.EF.PRODUCT_CATEGORY)ViewBag.Category;
+    var sideCate = (List<model_64132763.EF.PRODUCT_CATEGORY>)ViewBag.Menu_ProductCategory;
+    ViewBag.Title = category.NAME_PRODUCT_CATEGORY;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link rel="stylesheet" type="text/css" href="/Content/assets/plugins/jquery-ui-1.12.1.custom/jquery-ui.css">
+<link rel="stylesheet" type="text/css" href="/Content/assets/styles/categories_styles.css">
+<link rel="stylesheet" type="text/css" href="/Content/assets/styles/categories_responsive.css">
+<div class="container product_section_container">
+    <div class="row">
+        <div class="col product_section clearfix">
+
+            <!-- Breadcrumbs -->
+
+            <div class="breadcrumbs d-flex flex-row align-items-center">
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li class="active"><a href="/Category/@category.META_TITLE_PRODUCT_CATEGORY-@category.ID_PRODUCT_CATEGORY"><i class="fa fa-angle-right" aria-hidden="true"></i>@category.NAME_PRODUCT_CATEGORY</a></li>
+                </ul>
+            </div>
+
+            </div>
+
+            <!-- Main Content -->
+
+            <div class="main_content">
+
+                <!-- Products -->
+
+                <div class="products_iso">
+                    <div class="row">
+                        <div class="col">
+
+                            <!-- Product Sorting -->
+
+                            <div class="product_sorting_container product_sorting_container_top">
+                                <ul class="product_sorting">
+                                    <li>
+                                        <span class="type_sorting_text">Default Sorting</span>
+                                        <i class="fa fa-angle-down"></i>
+                                        <ul class="sorting_type">
+                                            <li class="type_sorting_btn" data-isotope-option='{ "sortBy": "original-order" }'><span>Default Sorting</span></li>
+                                            <li class="type_sorting_btn" data-isotope-option='{ "sortBy": "price" }'><span>Price</span></li>
+                                            <li class="type_sorting_btn" data-isotope-option='{ "sortBy": "name" }'><span>Product Name</span></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                                <div class="pages d-flex flex-row align-items-center">
+                                    <div class="page_current">
+                                        <span>1</span>
+                                        <ul class="page_selection">
+                                            <li><a href="#">1</a></li>
+                                            <li><a href="#">2</a></li>
+                                            <li><a href="#">3</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="page_total"><span>of</span> 3</div>
+                                    <div id="next_page" class="page_next"><a href="#"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></a></div>
+                                </div>
+
+                            </div>
+
+                            <!-- Product Grid -->
+
+                            <div class="product-grid">
+
+                                <!-- Product 1 -->
+                                @foreach (var item in Model)
+                                {
+                                    var url = "/Detail/" + item.META_TITLE_PRODUCT + "-" + item.ID_PRODUCT;
+                                    <div class="product-item men">
+                                        <div class="product discount product_filter">
+                                            <div class="product_image">
+                                                <img src="~/Content/assets/images/product_1.png" alt="@item.NAME_PRODUCT">
+                                            </div>
+                                            <div class="favorite favorite_left"></div>
+                                            <div class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"><span></span></div>
+                                            <div class="product_info">
+                                                <h6 class="product_name"><a href="@url">@item.NAME_PRODUCT</a></h6>
+                                                <div class="product_price">@(item.PRICE_SALE.HasValue ? item.PRICE.Value.ToString("C0") : "Contact")<span>@(item.PRICE.HasValue ? item.PRICE.Value.ToString("C0") :"Contact")</span></div>
+                                            </div>
+                                        </div>
+                                        <div class="red_button add_to_cart_button"><a href="/add-cart?ID_PRODUCT=@item.ID_PRODUCT&&QUANTITY=1">add to cart</a></div>
+                                    </div>
+                                }
+                            </div>
+
+                            <!-- Product Sorting -->
+                            @if (ViewBag.TotalPage > 1)
+                            {
+
+                                var pageDisplay = (int)ViewBag.MaxPage;
+                                int totalPage = (int)ViewBag.TotalPage;
+                                int currentPage = (int)ViewBag.Page;
+
+                                var start = Math.Max(1, currentPage - pageDisplay / 2);
+                                var end = Math.Min(totalPage, currentPage + pageDisplay / 2);
+                                var link = "/Product/" + category.META_TITLE_PRODUCT_CATEGORY + "-" + category.ID_PRODUCT_CATEGORY;
+                                <div class="product_sorting_container product_sorting_container_bottom clearfix">
+                                    <ul class="product_sorting">
+                                        <li>
+                                            <span>Show:</span>
+                                            <span class="num_sorting_text">04</span>
+                                            <i class="fa fa-angle-down"></i>
+                                            <ul class="sorting_num">
+                                                <li class="num_sorting_btn"><span>01</span></li>
+                                                <li class="num_sorting_btn"><span>02</span></li>
+                                                <li class="num_sorting_btn"><span>03</span></li>
+                                                <li class="num_sorting_btn"><span>04</span></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                    <nav>
+                                        <ul class="pagination">
+                                            @if (currentPage > ViewBag.First)
+                                            {
+                                                <li class="page-item">
+                                                    <a href="@link?page=@ViewBag.First" title="First page" class="page-link first">
+                                                        <i class="fa fa-angle-double-left" aria-hidden="true"></i>
+                                                    </a>
+                                                </li>
+                                                <li class="page-item">
+                                                    <a href="@link?page=@ViewBag.Prev" title="Previous page" class="page-link prev">
+                                                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                                                    </a>
+                                                </li>
+                                            }
+                                            @for (int i = start; i <= end; i++)
+                                            {
+                                                if (currentPage == i)
+                                                {
+                                                    <li class="page-item active">
+                                                        <a href="@link?page=@i" class="page-link" title="page @i">@i</a>
+                                                    </li>
+                                                }
+                                                else
+                                                {
+                                                    <li class="page-item">
+                                                        <a href="@link?page=@i" class="page-link" title="page @i">@i</a>
+                                                    </li>
+                                                }
+                                            }
+                                            @if (currentPage < totalPage)
+                                            {
+                                                <li class="page-item">
+                                                    <a href="@link?page=@ViewBag.Next" class="page-link next" title="Next page">
+                                                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                                                    </a>
+                                                </li>
+                                                <li class="page-item">
+                                                    <a href="@link?page=@ViewBag.Last" class="page-link last" title="Last page">
+                                                        <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                                                    </a>
+                                                </li>
+                                            }
+                                        </ul>
+                                    </nav>
+
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+@section scripts{
+    <script src="/Content/assets/js/categories_custom.js"></script>
+}
+
+
+

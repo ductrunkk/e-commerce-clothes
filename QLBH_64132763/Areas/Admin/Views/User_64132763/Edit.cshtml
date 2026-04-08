@@ -1,0 +1,105 @@
+﻿@model model_64132763.EF.USER_ROLE
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+@section header
+{
+    Cập nhật người dùng
+}
+
+<div class="row d-flex justify-content-center">
+    <div class="col-md-7 ">
+        <div class="card card-primary">
+            <div class="card-header">
+                <h3 class="card-title">Nhập thông tin người dùng</h3>
+            </div>
+
+            <div class="card-body">
+                @using (Html.BeginForm("Edit", "User_64132763", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.HiddenFor(model => model.ID_USER)
+                    <div class="form-group row">
+                        @Html.LabelFor(model => model.LAST_NAME, "Họ", htmlAttributes: new { @class = "col-md-2 col-form-label" })
+                        <div class="col-md-4">
+                            @Html.TextBoxFor(model => model.LAST_NAME, new { @class = "form-control", placeholder = "Họ" })
+                            @Html.ValidationMessageFor(model => model.LAST_NAME, "", new { @class = "text-danger" })
+                        </div>
+
+                        @Html.LabelFor(model => model.FIRST_NAME, "Tên", htmlAttributes: new { @class = "col-md-2 col-form-label" })
+                        <div class="col-md-4">
+                            @Html.TextBoxFor(model => model.FIRST_NAME, new { @class = "form-control", placeholder = "Tên" })
+                            @Html.ValidationMessageFor(model => model.FIRST_NAME, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        @Html.LabelFor(model => model.NAME_USER, "Tên đăng nhập", htmlAttributes: new { @class = "col-md-2 col-form-label" })
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(model => model.NAME_USER, new { @class = "form-control", placeholder = "Tên đăng nhập" })
+                            @Html.ValidationMessageFor(model => model.NAME_USER, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        @Html.LabelFor(model => model.PASSWORD_USER, "Mật khẩu", htmlAttributes: new { @class = "col-md-2 col-form-label" })
+                        <div class="col-md-10">
+                            @Html.PasswordFor(model => model.PASSWORD_USER, new { @class = "form-control", placeholder = "Mật khẩu" })
+                            @Html.ValidationMessageFor(model => model.PASSWORD_USER, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+
+
+                    @*<div class="form-group row">
+                        @Html.LabelFor(model => model.ADDRESS_CUSTOMER, "Địa chỉ", htmlAttributes: new { @class = "col-md-2 col-form-label" })
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(model => model.ADDRESS_CUSTOMER, new { @class = "form-control", placeholder = "Địa chỉ" })
+                            @Html.ValidationMessageFor(model => model.ADDRESS_CUSTOMER, "", new { @class = "text-danger" })
+                        </div>
+                    </div>*@
+
+                    <div class="form-group row">
+                        @Html.LabelFor(model => model.EMAIL, "Email", htmlAttributes: new { @class = "col-md-2 col-form-label" })
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(model => model.EMAIL, new { @class = "form-control", placeholder = "Email" })
+                            @Html.ValidationMessageFor(model => model.EMAIL, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        @Html.LabelFor(model => model.PHONE, "Số điện thoại", htmlAttributes: new { @class = "col-md-2 col-form-label" })
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(model => model.PHONE, new { @class = "form-control", placeholder = "Số điện thoại" })
+                            @Html.ValidationMessageFor(model => model.PHONE, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        @Html.LabelFor(model => model.STATUS_SLIDE, "Trạng thái", htmlAttributes: new { @class = "col-md-2 col-form-label" })
+                        <div class="col-md-10">
+                            <div class="form-check pt-2">
+                                @Html.CheckBoxFor(model => model.STATUS_SLIDE, new { @class = "form-check-input" })
+                                <label class="form-check-label" for="@Html.IdFor(model => model.STATUS_SLIDE)">Hoạt động</label>
+                                @Html.ValidationMessageFor(model => model.STATUS_SLIDE, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-md-10 offset-md-2">
+                            <input type="submit" value="Cập nhật" class="btn btn-primary" />
+                        </div>
+                    </div>
+                }
+
+            </div>
+            <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+    </div>
+</div>

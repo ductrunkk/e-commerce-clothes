@@ -1,0 +1,104 @@
+﻿@model model_64132763.EF.CATEGORY
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+@section header
+{
+    Thêm mới danh mục quảng cáo
+}
+<div class="row d-flex justify-content-center">
+    <div class="col-md-7 ">
+        <div class="card card-primary">
+            <div class="card-header">
+                <h3 class="card-title">Nhập thông tin danh mục quảng cáo</h3>
+            </div>
+
+            <div class="card-body">
+                @using (Html.BeginForm("Create", "User_64132763", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                <div class="form-group row">
+                    @Html.LabelFor(model => model.NAME_CATEGORY, "Tên danh mục",htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.NAME_CATEGORY, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.NAME_CATEGORY, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    @Html.LabelFor(model => model.META_TITLE_CATEGORY, "URL danh mục",htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.META_TITLE_CATEGORY, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.META_TITLE_CATEGORY, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    @Html.LabelFor(model => model.PARENTID_CATEGORY, "Danh mục con",htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.PARENTID_CATEGORY, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.PARENTID_CATEGORY, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+
+
+                <div class="form-group row">
+                    @Html.LabelFor(model => model.DISPLAY_ORDER, "Số thứ tự chiếu",htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.DISPLAY_ORDER, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.DISPLAY_ORDER, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    @Html.LabelFor(model => model.META_DESCRIPTIONS, "URL mô tả danh mục",htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.META_DESCRIPTIONS, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.META_DESCRIPTIONS, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    @Html.LabelFor(model => model.STATUS_CATEGORY, "Trạng thái",htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        <div class="checkbox">
+                            @Html.EditorFor(model => model.STATUS_CATEGORY)
+                            @Html.ValidationMessageFor(model => model.STATUS_CATEGORY, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    @Html.LabelFor(model => model.SHOW_ON_HOME, "Gắn trên trang chủ",htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        <div class="checkbox">
+                            @Html.EditorFor(model => model.SHOW_ON_HOME)
+                            @Html.ValidationMessageFor(model => model.SHOW_ON_HOME, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+
+                    <div class="form-group row">
+                        <div class="col-md-10 offset-md-2">
+                            <input type="submit" value="Tạo mới" class="btn btn-primary" />
+                        </div>
+                    </div>
+                }
+
+            </div>
+            <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+    </div>
+</div>
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+

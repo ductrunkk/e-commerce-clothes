@@ -1,0 +1,73 @@
+﻿@model List<model_64132763.ViewModel.RevenueByMonth>
+
+@{
+    ViewBag.Title = "Revenue";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+@section header
+{
+    Thống kê doanh thu
+}
+
+@section jsFooter
+{
+    <canvas id="revenueChart"></canvas>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        $(document).ready(function () {
+            // Lấy dữ liệu doanh thu từ server
+            $.getJSON('/Admin/Cart_64132763/Revenue', function (data) {
+                console.log(data)
+                // Tạo mảng labels và doanh thu từ dữ liệu trả về
+                const labels = data.map(x => x.MonthYear);  // Ví dụ: "Jan 2025"
+                const revenues = data.map(x => x.Revenue);  // Giá trị doanh thu
+
+                // Tạo biểu đồ
+                const ctx = document.getElementById('revenueChart').getContext('2d');
+                new Chart(ctx, {
+                    type: 'bar', // Loại biểu đồ (bar, line, pie, ...)
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: 'Monthly Revenue',
+                            data: revenues,
+                            backgroundColor: 'rgba(75, 192, 192, 0.2)',  // Màu nền của cột
+                            borderColor: 'rgba(75, 192, 192, 1)',  // Màu viền của cột
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            y: {
+                                beginAtZero: true  // Đảm bảo trục Y bắt đầu từ 0
+                            }
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+}
+
+<!-- Bảng hiển thị doanh thu -->
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Year</th>
+            <th>Month</th>
+            <th>Total Revenue</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Year</td>
+                <td>@item.Month</td>
+                <td>@item.TotalRevenue.ToString("C")</td>  <!-- Định dạng giá trị doanh thu với ký tự tiền tệ -->
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,146 @@
+﻿@model model_64132763.EF.PRODUCT
+
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var category = (model_64132763.EF.PRODUCT_CATEGORY)ViewBag.Category;
+}
+
+<link rel="stylesheet" href="/Content/assets/plugins/themify-icons/themify-icons.css">
+<link rel="stylesheet" type="text/css" href="/Content/assets/plugins/jquery-ui-1.12.1.custom/jquery-ui.css">
+<link rel="stylesheet" type="text/css" href="/Content/assets/styles/single_styles.css">
+<link rel="stylesheet" type="text/css" href="/Content/assets/styles/single_responsive.css">
+<div class="container single_product_container">
+    <div class="row">
+        <div class="col">
+
+            <!-- Breadcrumbs -->
+
+            <div class="breadcrumbs d-flex flex-row align-items-center">
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/Product/@category.META_TITLE_PRODUCT_CATEGORY-@category.ID_PRODUCT_CATEGORY"><i class="fa fa-angle-right" aria-hidden="true"></i>@category.NAME_PRODUCT_CATEGORY</a></li>
+                    <li class="active"><a href="/Detail/@Model.META_TITLE_PRODUCT-@Model.ID_PRODUCT"><i class="fa fa-angle-right" aria-hidden="true"></i>@Model.NAME_PRODUCT</a></li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-7">
+            <div class="single_product_pics">
+                <div class="row">
+                    <div class="col-lg-3 thumbnails_col order-lg-1 order-2">
+                        <div class="single_product_thumbnails">
+                            <ul>
+                                <li><img src="/Content/assets/images/single_1_thumb.jpg" alt="" data-image="/Content/assets/images/single_1.jpg"></li>
+                                <li class="active"><img src="/Content/assets/images/single_2_thumb.jpg" alt="" data-image="/Content/assets/images/single_2.jpg"></li>
+                                <li><img src="/Content/assets/images/single_3_thumb.jpg" alt="" data-image="/Content/assets/images/single_3.jpg"></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-9 image_col order-lg-2 order-1">
+                        <div class="single_product_image">
+                            <div class="single_product_image_background" style="background-image: url(/Content/assets/images/single_2.jpg)"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-5">
+            <div class="product_details">
+                <div class="product_details_title">
+                    <h2>@Model.NAME_PRODUCT</h2>
+                    <p>@Model.DESCRIPTIONS_PRODUCT</p>
+                </div>
+                <div class="free_delivery d-flex flex-row align-items-center justify-content-center">
+                    <span class="ti-truck"></span><span>free delivery</span>
+                </div>
+                <div class="original_price">@(Model.PRICE.HasValue ? Model.PRICE.Value.ToString("C0") :"Contact")</div>
+                <div class="product_price">@(Model.PRICE_SALE.HasValue ? Model.PRICE_SALE.Value.ToString("C0") :"Contact")</div>
+                <ul class="star_rating">
+                    <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                    <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                    <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                    <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                    <li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+                </ul>
+                <div class="quantity d-flex flex-column flex-sm-row align-items-sm-center">
+                    <span>Quantity:</span>
+                    <div class="quantity_selector">
+                        <span class="minus"><i class="fa fa-minus" aria-hidden="true"></i></span>
+                        <span id="quantity_value">1</span>
+                        <span class="plus"><i class="fa fa-plus" aria-hidden="true"></i></span>
+                    </div>
+                    <div class="buttons btn-block btn-danger py-2 px-4 text-bg-light d-flex align-items-center justify-content-center" style="color:white"><a href="/add-cart?ID_PRODUCT=@Model.ID_PRODUCT&&QUANTITY=1">add to cart</a></div>
+                    <div class="product_favorite d-flex flex-column align-items-center justify-content-center"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- Tabs -->
+
+<div class="tabs_section_container">
+
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="tabs_container">
+                    <ul class="tabs d-flex flex-sm-row flex-column align-items-left align-items-md-center justify-content-center">
+                        <li class="tab active" data-active-tab="tab_1"><span>Description</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+
+                <!-- Tab Description -->
+
+                <div id="tab_1" class="tab_container active">
+                    <div class="row">
+                        <div class="col-lg-5 desc_col">
+                            <div class="tab_title">
+                                <h4>Description</h4>
+                            </div>
+                            <div class="tab_text_block">
+                                <h2>@Model.NAME_PRODUCT</h2>
+                                <p>@Model.DETAIL</p>
+                            </div>
+                            <div class="tab_image">
+                                <img src="/Content/assets/images/desc_1.jpg" alt="">
+                            </div>
+                            <div class="tab_text_block">
+                                <h2>@Model.NAME_PRODUCT</h2>
+                                <p>@Model.DESCRIPTIONS_PRODUCT</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-5 offset-lg-2 desc_col">
+                            <div class="tab_image">
+                                <img src="/Content/assets/images/desc_2.jpg" alt="">
+                            </div>
+                            <div class="tab_text_block">
+                                <h2>@Model.NAME_PRODUCT</h2>
+                                <p>@Model.DETAIL</p>
+                            </div>
+                            <div class="tab_image desc_last">
+                                <img src="/Content/assets/images/desc_3.jpg" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts{
+    <script src="/Content/assets/plugins/easing/easing.js"></script>
+    <script src="/Content/assets/plugins/jquery-ui-1.12.1.custom/jquery-ui.js"></script>
+    <script src="/Content/assets/js/single_custom.js"></script>
+}

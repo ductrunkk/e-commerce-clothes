@@ -1,0 +1,99 @@
+﻿@model QLBH_64132763.Models.LoginModel64132763
+
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!-- Google Font: Source Sans Pro -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+<!-- Font Awesome -->
+<link rel="stylesheet" href="~/Content/clients/plugins/fontawesome-free/css/all.min.css">
+<!-- icheck bootstrap -->
+<link rel="stylesheet" href="~/Content/clients/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+<!-- Theme style -->
+<link rel="stylesheet" href="~/Content/clients/dist/css/adminlte.min.css">
+<link rel="stylesheet" type="text/css" href="~/Content/assets/styles/single_styles.css">
+<link rel="stylesheet" type="text/css" href=" ~/Content/assets/styles/single_responsive.css">
+<div class="container d-flex">
+    <div class="col-md-3">
+        <h1>.</h1>
+    </div>
+    <div class="hold-transition login-page col-md-6 single_product_container d-flex align-items-center vh-100">
+        <div class="login-box">
+            <div class="login-logo d-flex justify-content-center">
+                <h2>Login</h2>
+            </div>
+            <!-- /.login-logo -->
+            <div class="card">
+                <div class="card-body login-card-body">
+                    @using (Html.BeginForm("Login", "User_64132763", FormMethod.Post))
+                    {
+                        @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+                        <div class="input-group mb-3">
+                            @Html.TextBoxFor(model_64132763 => model_64132763.UserName, new { @class = "form-control", @placeholder = "Enter your username", @auto = "autofocus" })
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <span class="fas fa-envelope"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="input-group mb-3">
+                            @Html.PasswordFor(model_64132763 => model_64132763.Password, new { @class = "form-control", @placeholder = "Enter your password" })
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <span class="fas fa-lock"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row d-flex justify-content-center">
+                            <!-- /.col -->
+                            <div class="col-4">
+                                <button type="submit" class="btn btn-block" style="background-color: #fe4c50; color: white; ">Log In</button>
+                            </div>
+                            <!-- /.col -->
+                        </div>
+                    }
+                </div>
+                <!-- /.login-card-body -->
+            </div>
+        </div>
+        <!-- /.login-box -->
+        <!-- jQuery -->
+        <script src="~/Content/clients/plugins/jquery/jquery.min.js"></script>
+        <!-- Bootstrap 4 -->
+        <script src="~/Content/clients/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <!-- AdminLTE App -->
+        <script src="~/Content/clients/dist/js/adminlte.min.js"></script>
+    </div>
+
+</div>
+
+@*@using (Html.BeginForm("Login", "User_64132763", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.UserName, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create" class="btn btn-default" />
+                </div>
+            </div>
+
+    }*@
+
