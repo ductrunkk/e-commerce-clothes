@@ -99,4 +99,4 @@ This project demonstrates end-to-end ownership of:
 - Data modeling and production-style query/paging patterns
 
 ---
-If you are an HR/reviewer, this repository reflects practical experience building and integrating complete web commerce functionality from database to UI with operational admin capabilities.
+This repository reflects practical experience building and integrating complete web commerce functionality from database to UI with operational admin capabilities.
